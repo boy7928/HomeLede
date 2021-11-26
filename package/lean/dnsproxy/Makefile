@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dnsproxy
-PKG_VERSION:=0.38.1
+PKG_VERSION:=0.39.9
 PKG_RELEASE:=$(AUTORELESE)
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/AdguardTeam/dnsproxy/tar.gz/v$(PKG_VERSION)?
-PKG_HASH:=9a538d0d2e5f60234187c1e6092deb6c522aeb87c644d55c3cf8f38d384cd4f7
+PKG_HASH:=837c39edd1e40b5ab25636765d4310f1f23d8c57a25ecf799bdc595d4bfb5dae
 
 PKG_MAINTAINER:=Tianling Shen <cnsztl@immortalwrt.org>
 PKG_LICENSE:=Apache-2.0
@@ -60,8 +60,6 @@ define Package/dnsproxy/description
   DNS-over-TLS, DNS-over-HTTPS, DNSCrypt, and DNS-over-QUIC.Moreover, it can
   work as a DNS-over-HTTPS, DNS-over-TLS or DNS-over-QUIC server.
 endef
-
-GO_PKG_INSTALL_ARGS+= -mod vendor
 
 define Build/Compile
 	$(call GoPackage/Build/Compile)
