@@ -5,7 +5,7 @@
 [4]: https://github.com/xiaoqingfengATGH/HomeLede/pulls
 [5]: https://img.shields.io/badge/Issues-welcome-brightgreen.svg
 [6]: https://github.com/xiaoqingfengATGH/HomeLede/issues/new
-[7]: https://img.shields.io/badge/release-v2021.06.13-gold.svg?
+[7]: https://img.shields.io/badge/release-v2022.05.10-gold.svg?
 [8]: https://github.com/xiaoqingfengATGH/HomeLede/releases
 [10]: https://img.shields.io/badge/Contact-telegram-blue
 [11]: https://t.me/t_homelede
@@ -48,7 +48,7 @@
 
 感谢Lean（coolsnowwolf），Lienol，CTCGFW等等作者。
 
-============================================================================
+------
 
 ## 编译说明
 
@@ -57,9 +57,10 @@
 2. 国内用户编译前最好准备好梯子
 3. 默认登陆IP 192.168.1.1, 密码 password
 
+## 编译命令
 
 编译前：
-1. 首先装好 Ubuntu 64bit，推荐  Ubuntu 18 LTS x64
+1. 首先装好 Ubuntu 64bit，推荐  Ubuntu 20 LTS x64
 2. 至少30G空闲硬盘空间
 3. 2G以上内存，建议4G
 
@@ -82,6 +83,46 @@
 8. `make -j1 V=s` （-j1 后面是线程数。第一次编译推荐用单线程，国内请尽量全局科学上网）即可开始编译你要的固件了。
 
 编译成功后，再次编译可以启动多线程编译。如4核心8线程i7上开启16线程使用`make -j16 V=sc`
+
+------
+使用Windows子系统（WSL、WSL2）编译：
+
+由于 WSL 的 PATH 中包含带有空格的 Windows 路径，有可能会导致编译失败，请在 `make` 前面加上：
+
+```bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+```
+二次编译：
+```bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin make -j$(($(nproc) + 1)) V=s
+```
+
+------
+macOS 原生系统进行编译：
+------
+1.在 AppStore 中安装 Xcode
+
+### macOS 原生系统进行编译
+
+1. 在 AppStore 中安装 Xcode
+
+2. 安装 Homebrew：
+
+   ```bash
+   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+   ```
+
+3. 使用 Homebrew 安装工具链、依赖与基础软件包:
+
+   ```bash
+   brew unlink awk
+   brew install coreutils diffutils findutils gawk gnu-getopt gnu-tar grep make ncurses pkg-config wget quilt xz
+   brew install gcc@11
+   ```
+
+4. 然后输入以下命令，添加到系统环境变量中：
+
+然后输入 bash 命令，进入bash shell，其他步骤参考Linux构建
 
 ## 固件下载
 如需直接编译完成的固件，请访问Google网盘
